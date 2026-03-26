@@ -67,7 +67,7 @@ a:hover { color: var(--accent-hover); }
 
 .input-group input {
   width: 100%;
-  padding: 14px 16px 14px 44px;
+  padding: 14px 44px 14px 44px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -92,6 +92,22 @@ a:hover { color: var(--accent-hover); }
 }
 
 .input-group input:focus ~ .icon { color: var(--accent); }
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  padding: 4px !important;
+  z-index: 10;
+}
+
+.toggle-password:hover {
+  color: var(--text-primary) !important;
+}
 
 /* Button */
 .btn {

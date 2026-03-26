@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../hooks/useToast';
-import { Mail, Lock, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Mail, Lock, ShieldCheck, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
@@ -39,8 +40,23 @@ export default function RegisterPage() {
                     <Mail size={18} className="icon" />
                 </div>
                 <div className="input-group">
-                    <input type="password" placeholder="Senha (min. 6 caracteres)" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} />
+                    <input 
+                        type={showPassword ? "text" : "password"} 
+                        placeholder="Senha (min. 6 caracteres)" 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        required 
+                        minLength={6} 
+                    />
                     <Lock size={18} className="icon" />
+                    <button 
+                        type="button" 
+                        className="btn-icon toggle-password" 
+                        onClick={() => setShowPassword(!showPassword)}
+                        tabIndex="-1"
+                    >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                 </div>
                 <div className="input-group">
                     <input type="password" placeholder="Confirmar senha" value={confirm} onChange={e => setConfirm(e.target.value)} required minLength={6} />

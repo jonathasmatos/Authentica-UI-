@@ -14,6 +14,9 @@ api.interceptors.response.use(
     if (err.response?.status === 401) {
       localStorage.removeItem('token');
       window.location.href = '/login';
+    } else if (err.response?.status === 403) {
+      // Redireciona para o dashboard ou exibe erro de permissão
+      console.error('Acesso proibido: você não tem permissão para esta ação.');
     }
     return Promise.reject(err);
   }
